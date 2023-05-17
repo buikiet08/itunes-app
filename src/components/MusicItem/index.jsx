@@ -6,7 +6,6 @@ import { Button } from 'antd'
 import { useDispatch } from 'react-redux'
 import { setUrlThunkAction } from '@/store/musicReducer'
 import styled from 'styled-components'
-import { PlayCircleOutlined } from '@ant-design/icons'
 
 const CardStyled = styled.div`
     .play{
@@ -32,7 +31,7 @@ export const MusicItem = ({ previewUrl,trackId, artworkUrl100, trackCensoredName
                 </Link>
                 <span
                     onClick={() => {
-                        dispatch(setUrlThunkAction(previewUrl))
+                        dispatch(setUrlThunkAction(previewUrl || ''))
                     }} className='play absolute left-0 right-0 bg-white rounded-full flex justify-center items-center font-bold cursor-pointer'>
                     <Link to={path}>Phát</Link>
                 </span>
