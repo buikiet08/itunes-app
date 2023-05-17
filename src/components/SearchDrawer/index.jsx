@@ -1,5 +1,5 @@
 import { Button, Drawer } from 'antd'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CloseOutlined } from '@ant-design/icons'
 import { useAsync } from '@/hooks/useAsync'
 import { useDebounce } from '@/hooks/useDebounce'
@@ -7,10 +7,10 @@ import { musicService } from '@/services/music'
 import { MusicItem, MusicItemList, MusicItemListLoading, MusicItemLoading } from '../MusicItem'
 import { useMusic } from '@/hooks/useMusic'
 import { useDispatch } from 'react-redux'
-import { removeHistoryThunkAction, setHistoryThunkAction } from '@/store/musicReducer'
+import { removeHistoryThunkAction, setActiveThunkAction, setHistoryThunkAction } from '@/store/musicReducer'
 
 function SearchDrawer({ open, onClose }) {
-  const { history } = useMusic()
+  const { history,active } = useMusic()
   const dispatch = useDispatch()
   const [value, setValue] = useDebounce('')
   const { data, loading, excute } = useAsync(() => value != '' && musicService.getMusic({
@@ -24,12 +24,19 @@ function SearchDrawer({ open, onClose }) {
       dispatch(setHistoryThunkAction(value))
     }
   }
-
+  // gọi lại dữ liệu thi value thay đổi
+  useEffect(() => {
+    excute()
+  }, [value])
+  // xóa lịch sử
   const onRemoveHistory = async () => {
     dispatch(removeHistoryThunkAction())
   }
-
-  if (open === false) {
+  if(active) {
+    onClose()
+    dispatch(setActiveThunkAction())
+  }
+  if (!open) {
     setValue('')
   }
   return (
@@ -65,7 +72,7 @@ function SearchDrawer({ open, onClose }) {
           }
           {
             loading ? Array.from(Array(6)).map((_, i) => <MusicItemListLoading key={i} />) :
-              data?.results?.map((e, i) => <MusicItemList key={i} {...e} />)
+            data?.results?.map((e, i) => <MusicItemList key={i} {...e} />)
           }
 
         </div>

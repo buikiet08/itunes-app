@@ -38,7 +38,7 @@ export const Home = () => {
         {/* list music */}
         <div className='container m-auto pt-4'>
           <Typography.Title level={3} className='flex items-center'>Bài hát mới <FireOutlined className='text-[#ff0000] ml-2 text-xl' /></Typography.Title>
-          <div className='grid grid-cols-6 gap-4'>
+          <div className='grid grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 md:grid-cols-3 gap-4'>
             {
               loading ? Array.from(Array(6)).map((_, i) => <MusicItemLoading key={i} />) :
                 data?.results?.map((e, i) => <MusicItem key={i} {...e} />)

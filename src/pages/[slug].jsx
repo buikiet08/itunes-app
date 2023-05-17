@@ -34,13 +34,13 @@ function Detail() {
     return (
         <>
             <Row className='container m-auto pt-4'>
-                <Col span={24}>
+                <Col span={24} className={window.innerWidth < 1024 && 'pl-4'}>
                     <Breadcrumb>
                         <Breadcrumb.Title to={PATH.Home}>Home</Breadcrumb.Title>
                         <Breadcrumb.Title to=''>{res?.trackCensoredName}</Breadcrumb.Title>
                     </Breadcrumb>
                 </Col>
-                <Col span={6} className='pr-4 pt-2'>
+                <Col span={window.innerWidth < 1024 ? 24 : 6} className={`pr-4 pt-2 ${window.innerWidth < 1024 && 'pl-4'}`}>
                     {
                         loading &&
                         <>
@@ -65,7 +65,7 @@ function Detail() {
                         <Button className='min-w-[160px]'>{res?.collectionPrice} {res?.currency}</Button>
                     </div>
                 </Col>
-                <Col span={18} className='pl-4'>
+                <Col span={window.innerWidth < 1024 ? 24 : 18} className='pl-4'>
                     <Typography.Title level={3}>Bài hát liên quan</Typography.Title>
                     <ListMusicStyled className='listMusicOther'>
                         {
@@ -74,7 +74,6 @@ function Detail() {
                         }
                     </ListMusicStyled>
                 </Col>
-
             </Row>
             <Row>
                 <Col span={24}>
