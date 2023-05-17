@@ -25,7 +25,8 @@ export const setUrlThunkAction = createAsyncThunk('music/setUrl', async (data, t
 export const { reducer: musicReducer, actions: musicActions, getInitialState } = createSlice({
     initialState: {
         history: getHistory(),
-        url:null
+        url:null,
+        active:false
     },
     name: 'music',
     reducers: {

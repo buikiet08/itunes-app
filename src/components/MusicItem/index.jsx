@@ -3,7 +3,6 @@ import { Skeleton } from '../Skeleton'
 import { PATH } from '@/config/path'
 import { Link, generatePath } from 'react-router-dom'
 import { Button } from 'antd'
-import MusicPlayer from '../MusicPlayer'
 import { useDispatch } from 'react-redux'
 import { setUrlThunkAction } from '@/store/musicReducer'
 
