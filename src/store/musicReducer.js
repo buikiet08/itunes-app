@@ -18,9 +18,14 @@ export const removeHistoryThunkAction = createAsyncThunk('music/removeHistory', 
     thunkApi.dispatch(musicActions.removeHistory())
 })
 
+export const setUrlThunkAction = createAsyncThunk('music/setUrl', async (data, thunkApi) => {
+    thunkApi.dispatch(musicActions.setUrl(data))
+})
+
 export const { reducer: musicReducer, actions: musicActions, getInitialState } = createSlice({
     initialState: {
-        history: getHistory()
+        history: getHistory(),
+        url:null
     },
     name: 'music',
     reducers: {
@@ -30,6 +35,9 @@ export const { reducer: musicReducer, actions: musicActions, getInitialState } =
         removeHistory: (state) => {
             state.history = null
         },
+        setUrl: (state,action) => {
+            state.url = action.payload
+        }
     },
     extraReducers: (builder) => {
         builder

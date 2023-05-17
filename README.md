@@ -45,8 +45,9 @@ Bước 2: Run dự án
 2.sử dụng customer hook useFetch để lấy dữ liệu từ api và đổ danh sách bài hát ra ngoài giao diện
 3.sử dụng customer hook useDebounce để sử lý tìm kiếm, trách dữ liệu gọi liên tục khi người dùng nhập vào input
 4.Sử dụng redux toolkit để lưu trữ các tìm kiếm và lưu vào LocalStore làm danh sách lịch sử tìm kiếm
+5.Sử dụng redux xử lý tính năng phát nhạc
 
 # Tính năng chưa hoàn thành
-1.phát nhạc
+1.phát nhạc chưa có tính năng chuyển bài
 2.Tối ưu perfomance
 3.reponsive

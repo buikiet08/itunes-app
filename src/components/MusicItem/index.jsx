@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Skeleton } from '../Skeleton'
 import { PATH } from '@/config/path'
 import { Link, generatePath } from 'react-router-dom'
 import { Button } from 'antd'
+import MusicPlayer from '../MusicPlayer'
+import { useDispatch } from 'react-redux'
+import { setUrlThunkAction } from '@/store/musicReducer'
 
 export const MusicItem = ({ trackId, artworkUrl100, trackCensoredName, artistName }) => {
     const path = generatePath(PATH.Detail, { id: trackId })
@@ -29,8 +32,9 @@ export const MusicItemLoading = () => {
     )
 }
 
-export const MusicItemList = ({ trackId, artworkUrl100, trackCensoredName, artistName }) => {
+export const MusicItemList = ({ trackId, artworkUrl100, trackCensoredName, artistName,previewUrl }) => {
     const path = generatePath(PATH.Detail, { id: trackId })
+    const dispatch = useDispatch()
     return (
         <div className='overflow-hidden flex justify-between w-full items-start mb-4 pb-4 border-b border-b-slate-200 pr-4'>
             <div className='flex justify-center items-center'>
@@ -42,7 +46,9 @@ export const MusicItemList = ({ trackId, artworkUrl100, trackCensoredName, artis
                     <p className='text-xs font-light whitespace-normal overflow-hidden' >{artistName}</p>
                 </div>
             </div>
-            <Button>Phát</Button>
+            <Button onClick={() => {
+                dispatch(setUrlThunkAction(previewUrl))
+            }}>Phát</Button>
         </div>
     )
 }
